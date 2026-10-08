@@ -166,7 +166,7 @@ namespace Labb2_Dungeon_Crawler
                 EnemyTurn();
                 //Thread.Sleep(100);
                 DrawLevel(myLevel, maxY, maxX, maxVision);
-                Console.WriteLine($"Recorded Walls: {wallHistory.Count}");
+                //Console.WriteLine($"Recorded Walls: {wallHistory.Count}");
 
             }
         }
