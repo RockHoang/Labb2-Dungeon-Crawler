@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 LevelData myGame = new LevelData();
 
-myGame.InitalizingMap();
+myGame.Load("Level1.txt");
 myGame.UpdateGane();
 
 

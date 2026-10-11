@@ -7,15 +7,15 @@ namespace Labb2_Dungeon_Crawler
 {
     public class LevelData
     {
-        List<LevelElement> myLevel = new List<LevelElement>();
-        List<Wall> wallHistory = new List<Wall>();
+        private List<LevelElement> myLevel = new List<LevelElement>();
+       private List<Wall> wallHistory = new List<Wall>();
         int maxY = 0;
         int maxX = 0;
 
         int maxVision = 5;
 
-        public void InitalizingMap() {
-            string myPath = Path.Combine(AppContext.BaseDirectory, "Level1.txt");
+        public void Load(string filename) {
+            string myPath = Path.Combine(AppContext.BaseDirectory, filename);
             StreamReader levelReader = new StreamReader(myPath);
 
             List<string> map = new List<string>();

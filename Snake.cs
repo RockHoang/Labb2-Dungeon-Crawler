@@ -28,7 +28,7 @@ namespace Labb2_Dungeon_Crawler
 
         public void AvoidPlayer(int pY, int pX, List<LevelElement> Level)
         {
-            if (DistanceFromPlayer(pY, pX, this.myY, this.myX) == 1)
+            if (DistanceFromPlayer(pY, pX, this.myY, this.myX) <= 2)
             {
                 MoveFromPlayer(pY, pX, this.myY, this.myX, Level);
             }
@@ -40,26 +40,26 @@ namespace Labb2_Dungeon_Crawler
             //Console.WriteLine($"Distance move down: {DistanceFromPlayer(pY, pX, tempY+1, x)}");
             //Console.WriteLine($"Distance move left: {DistanceFromPlayer(pY, pX, y, tempX-1)}");
             //Console.WriteLine($"Distance move right: {DistanceFromPlayer(pY, pX, y, tempX+1)}");
-            if (DistanceFromPlayer(pY, pX, tempY-1, x) > 1 && Collision(tempY-1, tempX, Level))
+            if (DistanceFromPlayer(pY, pX, tempY-1, x) > 2 && Collision(tempY-1, tempX, Level))
             {
                 this.myY = tempY-1;
             }
-            else if (DistanceFromPlayer(pY, pX, tempY+1, x) > 1 && Collision(tempY+1, tempX, Level))
+            else if (DistanceFromPlayer(pY, pX, tempY+1, x) > 2 && Collision(tempY+1, tempX, Level))
             {
                 this.myY = tempY+1;
             }
 
-            else if (DistanceFromPlayer(pY, pX, y, tempX-1) > 1 && Collision(tempY, tempX-1, Level))
+            else if (DistanceFromPlayer(pY, pX, y, tempX-1) > 2 && Collision(tempY, tempX-1, Level))
             {
                 this.myX = tempX-1;
             }
 
-            else if (DistanceFromPlayer(pY, pX, y, tempX+1) > 1 && Collision(tempY, tempX+1, Level))
+            else if (DistanceFromPlayer(pY, pX, y, tempX+1) > 2 && Collision(tempY, tempX+1, Level))
             {
                 this.myX = tempX+1;
             }
             else {
-                Console.WriteLine("Cannot move");
+                
             }
 
         }
