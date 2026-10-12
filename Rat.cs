@@ -13,6 +13,9 @@ namespace Labb2_Dungeon_Crawler
             this.myX = x;
             this.mySprite = 'r';
             this.myColor = ConsoleColor.Red;
+            this.myHP = 10;
+            this.myAttack = "1d6+3";
+            this.myDefence = "1d6+1";
         }
 
         public override void Update(List<LevelElement> Level)
