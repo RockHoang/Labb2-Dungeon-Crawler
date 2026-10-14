@@ -28,7 +28,6 @@ namespace Labb2_Dungeon_Crawler
             List<string> map = new List<string>();
             
            
-
             string myline = levelReader.ReadLine();
             while (myline != null)
             {
@@ -94,8 +93,7 @@ namespace Labb2_Dungeon_Crawler
                 }
                 Console.WriteLine();
             }
-            Console.WriteLine($"turn: {turns}".PadRight(50));
-
+            Console.WriteLine($"Turn: {turns}".PadRight(60));
 
 
         }
@@ -123,7 +121,7 @@ namespace Labb2_Dungeon_Crawler
 
         }
 
-        //beräknar vad spelaren ser med pythagoras sats.
+        //Beräknar vad spelaren ser med pythagoras sats.
         int PlayerVision(int playerY, int playerX, LevelElement element)
         {
             double Ys = Math.Pow(Convert.ToDouble(playerY - element.myY), 2);
@@ -171,9 +169,9 @@ namespace Labb2_Dungeon_Crawler
         }
 
         private void PlayerTurn() {
-            foreach (var element in myLevel) {
+            foreach (var element in MyLevel) {
                 if (element is Player p) {
-                    p.Update(myLevel);
+                    p.Update(MyLevel);
                 }
             }
 
@@ -181,41 +179,41 @@ namespace Labb2_Dungeon_Crawler
 
         private void EnemyTurn()
         {
-            foreach (var element in myLevel)
+            foreach (var element in MyLevel)
             {
                 if (element is Rat r)
                 {
-                    r.Update(myLevel);
+                    r.Update(MyLevel);
                 }
                 else if (element is Snake s) { 
-                    s.Update(myLevel);
+                    s.Update(MyLevel);
                 }
             }
 
         }
 
         private void RemoveTheDead() {
-            foreach (var element in myLevel) {
+            foreach (var element in MyLevel) {
                 if (element is Rat r && r.IsDead())
                 {
-                    myLevel.Remove(r);
+                    MyLevel.Remove(r);
                     break;
                 }
                 else if (element is Snake s && s.IsDead())
                 {
-                    myLevel.Remove(s);
+                    MyLevel.Remove(s);
                     break;
                 }
                 else if (element is Player p && p.IsDead()) 
                 {
-                    myLevel.Remove(p);
+                    MyLevel.Remove(p);
                     endgame = true;
                     Console.WriteLine("Press any key to end the game.");
                     Console.ReadKey();
                     break;
                 }
             }
-            DrawLevel(myLevel, maxY, maxX, maxVision);
+            DrawLevel(MyLevel, maxY, maxX, maxVision);
         }
 
     }

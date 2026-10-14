@@ -14,8 +14,8 @@ namespace Labb2_Dungeon_Crawler
             this.mySprite = '@';
             this.myColor = ConsoleColor.DarkRed;
             this.myHP = 100;
-            this.myAttack = "2d6+2";
-            this.myDefence = "2d6+0";
+            this.myAttack = new Dice(2, 6, 2);
+            this.myDefence = new Dice(2, 6, 0);
         }
 
         public override void Update(List<LevelElement> Level) {
@@ -34,7 +34,7 @@ namespace Labb2_Dungeon_Crawler
                         return false;
                     }
 
-                    else if (element.myX == x && element.myY == y && element is Enemy)
+                    else if (element.myX == x && element.myY == y && (element is Rat or Snake))
                     {
                         combat((Enemy)element);
                         return true;
@@ -74,6 +74,12 @@ namespace Labb2_Dungeon_Crawler
                 else if (myInput.Key == ConsoleKey.RightArrow)
                 {
                     x += 1;
+                    break;
+                }
+
+                else if (myInput.Key == ConsoleKey.Escape)
+                {
+                    this.myHP = 0;
                     break;
                 }
                 else { }
