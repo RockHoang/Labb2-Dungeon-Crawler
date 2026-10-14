@@ -36,6 +36,5 @@ namespace Labb2_Dungeon_Crawler
             return myDiceStats;
         }
 
-
     }
 }

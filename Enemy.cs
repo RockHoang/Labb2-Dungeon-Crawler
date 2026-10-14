@@ -20,14 +20,12 @@ namespace Labb2_Dungeon_Crawler
 
         public void combat(Enemy myEnemy)
         {
-            //Dice attackeDice = new Dice(myAttack);
-            //Dice defenceDice = new Dice(myEnemy.myDefence);
 
             int attack = this.myAttack.Throw();
             int defence = myEnemy.myDefence.Throw();
             int outcome = attack - defence;
             Console.WriteLine($"{this.GetType().Name} Started combat with {myEnemy.GetType().Name}".PadRight(60));
-            Console.WriteLine($"{this.GetType().Name} threw {myAttack} got:{attack} {myEnemy.GetType().Name} threw {myEnemy.myDefence} got:{defence}".PadRight(60));
+            //Console.WriteLine($"{this.GetType().Name} threw {myAttack} got:{attack} {myEnemy.GetType().Name} threw {myEnemy.myDefence} got:{defence}".PadRight(60));
             if (outcome > 0) {
                 int enemyHP = myEnemy.myHP;
                 myEnemy.myHP -= outcome;
@@ -36,6 +34,27 @@ namespace Labb2_Dungeon_Crawler
             }
             else {
                 Console.WriteLine($"{this.GetType().Name} did no damage to {myEnemy.GetType().Name}!".PadRight(60));
+                Console.WriteLine($"{myEnemy.GetType().Name} counterattacked {this.GetType().Name}!".PadRight(60));
+                CounterAttack(myEnemy);
+                
+            }
+
+        }
+
+        public void CounterAttack(Enemy myEnemy) {
+            int attack = myEnemy.myAttack.Throw();
+            int defence = this.myDefence.Throw();
+            int outcome = attack - defence;
+            if (outcome > 0)
+            {
+                int enemyHP = this.myHP;
+                myEnemy.myHP -= outcome;
+                Console.WriteLine($"{myEnemy.GetType().Name} did {outcome} damage to {this.GetType().Name} HP {enemyHP} -> {this.myHP}".PadRight(60));
+
+            }
+            else
+            {
+                Console.WriteLine($"{myEnemy.GetType().Name} did no damage to {this.GetType().Name}!".PadRight(60));
             }
 
         }

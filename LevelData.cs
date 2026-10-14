@@ -155,10 +155,11 @@ namespace Labb2_Dungeon_Crawler
         }
 
         public void UpdateGane() {
+            Console.WriteLine($"Use the Arrowkeys to move, press Esc to end the game.".PadRight(60));
             while (!endgame)
             {
                 RemoveTheDead();
-
+                DrawLevel(MyLevel, maxY, maxX, maxVision);
                 PlayerTurn();
                 EnemyTurn();
 
@@ -193,6 +194,7 @@ namespace Labb2_Dungeon_Crawler
         }
 
         private void RemoveTheDead() {
+            
             foreach (var element in MyLevel) {
                 if (element is Rat r && r.IsDead())
                 {
@@ -213,7 +215,6 @@ namespace Labb2_Dungeon_Crawler
                     break;
                 }
             }
-            DrawLevel(MyLevel, maxY, maxX, maxVision);
         }
 
     }
