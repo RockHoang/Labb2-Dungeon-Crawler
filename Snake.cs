@@ -43,21 +43,21 @@ namespace Labb2_Dungeon_Crawler
             //Console.WriteLine($"Distance move down: {DistanceFromPlayer(pY, pX, tempY+1, x)}");
             //Console.WriteLine($"Distance move left: {DistanceFromPlayer(pY, pX, y, tempX-1)}");
             //Console.WriteLine($"Distance move right: {DistanceFromPlayer(pY, pX, y, tempX+1)}");
-            if (DistanceFromPlayer(pY, pX, tempY-1, x) > 2 && Collision(tempY-1, tempX, Level))
+            if (DistanceFromPlayer(pY, pX, tempY-1, x) > 2 && NoCollision(tempY-1, tempX, Level))
             {
                 this.myY = tempY-1;
             }
-            else if (DistanceFromPlayer(pY, pX, tempY+1, x) > 2 && Collision(tempY+1, tempX, Level))
+            else if (DistanceFromPlayer(pY, pX, tempY+1, x) > 2 && NoCollision(tempY+1, tempX, Level))
             {
                 this.myY = tempY+1;
             }
 
-            else if (DistanceFromPlayer(pY, pX, y, tempX-1) > 2 && Collision(tempY, tempX-1, Level))
+            else if (DistanceFromPlayer(pY, pX, y, tempX-1) > 2 && NoCollision(tempY, tempX-1, Level))
             {
                 this.myX = tempX-1;
             }
 
-            else if (DistanceFromPlayer(pY, pX, y, tempX+1) > 2 && Collision(tempY, tempX+1, Level))
+            else if (DistanceFromPlayer(pY, pX, y, tempX+1) > 2 && NoCollision(tempY, tempX+1, Level))
             {
                 this.myX = tempX+1;
             }
@@ -67,7 +67,7 @@ namespace Labb2_Dungeon_Crawler
 
         }
 
-        private bool Collision(int y, int x, List<LevelElement> Level) {
+        private bool NoCollision(int y, int x, List<LevelElement> Level) {
 
             foreach (LevelElement element in Level) {
                 if (element.myY == y && element.myX == x) {

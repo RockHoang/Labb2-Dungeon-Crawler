@@ -88,15 +88,15 @@ namespace Labb2_Dungeon_Crawler
                 Console.WriteLine();
             }
 
-            foreach (var element in Level) {
+            //foreach (var element in Level) {
 
-                if (element is Player p) {
+            //    if (element is Player p) {
                     
-                    Console.WriteLine($"Event:");
-                    string m = p.getMessage();
-                }
+            //        Console.WriteLine($"Event:");
+            //        string m = p.getMessage();
+            //    }
             
-            }
+            //}
 
             
             

@@ -17,8 +17,29 @@ namespace Labb2_Dungeon_Crawler
 
         public abstract void Update(List<LevelElement> Level);
 
-        public void combat(LevelElement attacker, LevelElement defender)
+        public void combat(Enemy myEnemy)
         {
+            Dice attackeDice = new Dice(myAttack);
+            Dice defenceDice = new Dice(myEnemy.myDefence);
+
+            int attack = attackeDice.Throw();
+            int defence = defenceDice.Throw();
+            int outcome = attack - defence;
+            Console.WriteLine($"{this.GetType().Name} Started combat with {myEnemy.GetType().Name}".PadRight(50));
+            if (outcome > 0) {
+                int enemyHP = myEnemy.myHP;
+                myEnemy.myHP -= outcome;
+                Console.WriteLine($"{this.GetType().Name} threw {myAttack} got:{attack}".PadRight(50));
+                Console.WriteLine($"{myEnemy.GetType().Name} threw {myEnemy.myDefence} got:{defence}".PadRight(50));
+                Console.WriteLine($"{this.GetType().Name} did {outcome} damage {myEnemy.GetType().Name}'s HP {enemyHP} -> {myEnemy.myHP}".PadRight(60));
+
+            }
+            else {
+                Console.WriteLine($"{this.GetType().Name} threw {myAttack} got:{attack}".PadRight(50));
+                Console.WriteLine($"{myEnemy.GetType().Name} threw {myEnemy.myDefence} got:{defence}".PadRight(50));
+                Console.WriteLine($"{this.GetType().Name} did no damage to {myEnemy.GetType().Name}!".PadRight(60));
+            }
+
 
         }
     }

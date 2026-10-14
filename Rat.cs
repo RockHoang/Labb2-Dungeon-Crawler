@@ -36,8 +36,11 @@ namespace Labb2_Dungeon_Crawler
         private bool ValidMove(List<LevelElement> Level, int x, int y)
         {
             foreach (var element in Level) {
-                if (element.myX == x && element.myY == y) { 
-                    return false;
+                if (element.myX == x && element.myY == y && element is Player) {
+                    combat((Enemy)element);
+                    return true;
+                } else if (element.myX == x && element.myY == y) {
+                    return true;
                 }
             
             }

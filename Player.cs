@@ -35,10 +35,16 @@ namespace Labb2_Dungeon_Crawler
             while (true) {
                 foreach (var element in Level)
                 {
-                    if (element.myX == x && element.myY == y)
+                    if (element.myX == x && element.myY == y && element is Wall)
                     {
                         message = "You bumped into a wall!";
                         return false;
+                    }
+
+                    else if (element.myX == x && element.myY == y && element is Enemy)
+                    {
+                        combat((Enemy)element);
+                        return true;
                     }
 
                 }
