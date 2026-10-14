@@ -7,7 +7,6 @@ namespace Labb2_Dungeon_Crawler
 {
     public class Player : Enemy
     {
-        private string message = " ";
         public Player(int y, int x) : base(y, x)
         {
             this.myY = y;
@@ -26,19 +25,12 @@ namespace Labb2_Dungeon_Crawler
             
         }
 
-        public string getMessage() { 
-            string m = message;
-            Console.WriteLine(m.PadRight(50));
-            return m;
-        }
-
         private bool ValidMove(List<LevelElement> Level, int y, int x) {
             while (true) {
                 foreach (var element in Level)
                 {
                     if (element.myX == x && element.myY == y && element is Wall)
                     {
-                        message = "You bumped into a wall!";
                         return false;
                     }
 
@@ -65,27 +57,23 @@ namespace Labb2_Dungeon_Crawler
                 if (myInput.Key == ConsoleKey.UpArrow)
                 {
                     y -= 1;
-                    message = "You moved up!";
                     break;
                 }
 
                 else if (myInput.Key == ConsoleKey.DownArrow)
                 {
                     y += 1;
-                    message = "You moved down!";
                     break;
                 }
                 else if (myInput.Key == ConsoleKey.LeftArrow)
                 {
                     x -= 1;
-                    message = "You moved left!";
                     break;
                 }
 
                 else if (myInput.Key == ConsoleKey.RightArrow)
                 {
                     x += 1;
-                    message = "You moved right!";
                     break;
                 }
                 else { }

@@ -210,7 +210,7 @@ namespace Labb2_Dungeon_Crawler
                 {
                     myLevel.Remove(p);
                     endgame = true;
-                    Console.WriteLine("press any key to end the game.");
+                    Console.WriteLine("Press any key to end the game.");
                     Console.ReadKey();
                     break;
                 }
