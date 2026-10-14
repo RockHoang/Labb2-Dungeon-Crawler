@@ -28,19 +28,18 @@ namespace Labb2_Dungeon_Crawler
                     break;
                 }
             }
-            
-            
+
 
         }
 
         private bool ValidMove(List<LevelElement> Level, int x, int y)
         {
             foreach (var element in Level) {
-                if (element.myX == x && element.myY == y && element is Player) {
+                if (element.myX == x && element.myY == y && element is Player && this.myHP > 0) {
                     combat((Enemy)element);
                     return true;
                 } else if (element.myX == x && element.myY == y) {
-                    return true;
+                    return false;
                 }
             
             }

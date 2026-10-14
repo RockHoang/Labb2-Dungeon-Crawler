@@ -8,11 +8,18 @@ namespace Labb2_Dungeon_Crawler
     public class LevelData
     {
         private List<LevelElement> myLevel = new List<LevelElement>();
-       private List<Wall> wallHistory = new List<Wall>();
+        private List<Wall> wallHistory = new List<Wall>();
         int maxY = 0;
         int maxX = 0;
 
         int maxVision = 5;
+        int turns = 0;
+        bool endgame=false;
+
+        public List<LevelElement> MyLevel
+        {
+            get => myLevel;
+        }
 
         public void Load(string filename) {
             string myPath = Path.Combine(AppContext.BaseDirectory, filename);
@@ -69,7 +76,7 @@ namespace Labb2_Dungeon_Crawler
                 }
             }
 
-            DrawLevel(myLevel, maxY, maxX, maxVision);
+            DrawLevel(MyLevel, maxY, maxX, maxVision);
         }
 
         void DrawLevel(List<LevelElement> Level, int maxY, int maxX, int maxVision) {
@@ -87,19 +94,10 @@ namespace Labb2_Dungeon_Crawler
                 }
                 Console.WriteLine();
             }
+            Console.WriteLine($"turn: {turns}".PadRight(50));
 
-            //foreach (var element in Level) {
 
-            //    if (element is Player p) {
-                    
-            //        Console.WriteLine($"Event:");
-            //        string m = p.getMessage();
-            //    }
-            
-            //}
 
-            
-            
         }
 
         bool SeenWall(int y, int x) {
@@ -159,16 +157,17 @@ namespace Labb2_Dungeon_Crawler
         }
 
         public void UpdateGane() {
-            while (true)
+            while (!endgame)
             {
-                PlayerTurn();
-                
-                EnemyTurn();
-                //Thread.Sleep(100);
-                DrawLevel(myLevel, maxY, maxX, maxVision);
-                //Console.WriteLine($"Recorded Walls: {wallHistory.Count}");
+                RemoveTheDead();
 
+                PlayerTurn();
+                EnemyTurn();
+
+                turns++;
+                
             }
+            
         }
 
         private void PlayerTurn() {
@@ -193,6 +192,30 @@ namespace Labb2_Dungeon_Crawler
                 }
             }
 
+        }
+
+        private void RemoveTheDead() {
+            foreach (var element in myLevel) {
+                if (element is Rat r && r.IsDead())
+                {
+                    myLevel.Remove(r);
+                    break;
+                }
+                else if (element is Snake s && s.IsDead())
+                {
+                    myLevel.Remove(s);
+                    break;
+                }
+                else if (element is Player p && p.IsDead()) 
+                {
+                    myLevel.Remove(p);
+                    endgame = true;
+                    Console.WriteLine("press any key to end the game.");
+                    Console.ReadKey();
+                    break;
+                }
+            }
+            DrawLevel(myLevel, maxY, maxX, maxVision);
         }
 
     }

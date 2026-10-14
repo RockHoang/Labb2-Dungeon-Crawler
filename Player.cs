@@ -22,6 +22,7 @@ namespace Labb2_Dungeon_Crawler
         public override void Update(List<LevelElement> Level) {
             var (posY, posX) = input(this.myY, this.myX);
             ValidMove(Level, posY, posX);
+            IsDead();
             
         }
 
@@ -61,27 +62,27 @@ namespace Labb2_Dungeon_Crawler
             while (true)
             {
                 myInput = Console.ReadKey(true);
-                if (myInput.Key == ConsoleKey.W)
+                if (myInput.Key == ConsoleKey.UpArrow)
                 {
                     y -= 1;
                     message = "You moved up!";
                     break;
                 }
 
-                else if (myInput.Key == ConsoleKey.S)
+                else if (myInput.Key == ConsoleKey.DownArrow)
                 {
                     y += 1;
                     message = "You moved down!";
                     break;
                 }
-                else if (myInput.Key == ConsoleKey.A)
+                else if (myInput.Key == ConsoleKey.LeftArrow)
                 {
                     x -= 1;
                     message = "You moved left!";
                     break;
                 }
 
-                else if (myInput.Key == ConsoleKey.D)
+                else if (myInput.Key == ConsoleKey.RightArrow)
                 {
                     x += 1;
                     message = "You moved right!";

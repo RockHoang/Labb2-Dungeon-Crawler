@@ -43,27 +43,29 @@ namespace Labb2_Dungeon_Crawler
             //Console.WriteLine($"Distance move down: {DistanceFromPlayer(pY, pX, tempY+1, x)}");
             //Console.WriteLine($"Distance move left: {DistanceFromPlayer(pY, pX, y, tempX-1)}");
             //Console.WriteLine($"Distance move right: {DistanceFromPlayer(pY, pX, y, tempX+1)}");
-            if (DistanceFromPlayer(p.myY, p.myX, tempY-1, x) > 2 && NoCollision(tempY-1, tempX, Level))
+            if (DistanceFromPlayer(p.myY, p.myX, tempY - 1, x) > 2 && NoCollision(tempY - 1, tempX, Level))
             {
-                this.myY = tempY-1;
+                this.myY = tempY - 1;
             }
-            else if (DistanceFromPlayer(p.myY, p.myX, tempY+1, x) > 2 && NoCollision(tempY+1, tempX, Level))
+            else if (DistanceFromPlayer(p.myY, p.myX, tempY + 1, x) > 2 && NoCollision(tempY + 1, tempX, Level))
             {
-                this.myY = tempY+1;
-            }
-
-            else if (DistanceFromPlayer(p.myY, p.myX, y, tempX-1) > 2 && NoCollision(tempY, tempX-1, Level))
-            {
-                this.myX = tempX-1;
+                this.myY = tempY + 1;
             }
 
-            else if (DistanceFromPlayer(p.myY, p.myX, y, tempX+1) > 2 && NoCollision(tempY, tempX+1, Level))
+            else if (DistanceFromPlayer(p.myY, p.myX, y, tempX - 1) > 2 && NoCollision(tempY, tempX - 1, Level))
             {
-                this.myX = tempX+1;
+                this.myX = tempX - 1;
             }
-            else {
+
+            else if (DistanceFromPlayer(p.myY, p.myX, y, tempX + 1) > 2 && NoCollision(tempY, tempX + 1, Level))
+            {
+                this.myX = tempX + 1;
+            }
+            else if (this.myHP > 0)
+            {
                 FightPlayer(p);
             }
+            else { }
 
         }
 
