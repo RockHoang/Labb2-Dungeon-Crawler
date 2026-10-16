@@ -22,7 +22,7 @@ namespace Labb2_Dungeon_Crawler
         }
 
         public void Load(string filename) {
-            string myPath = Path.Combine(AppContext.BaseDirectory, filename);
+            string myPath = Path.Combine(AppContext.BaseDirectory, "..\\..\\..\\" + filename);
             StreamReader levelReader = new StreamReader(myPath);
 
             List<string> map = new List<string>();
