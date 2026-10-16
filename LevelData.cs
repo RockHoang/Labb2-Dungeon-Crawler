@@ -7,7 +7,7 @@ namespace Labb2_Dungeon_Crawler
 {
     public class LevelData
     {
-        private List<LevelElement> myLevel = new List<LevelElement>();
+        private List<LevelElement> gameLevel = new List<LevelElement>();
         private List<Wall> wallHistory = new List<Wall>();
         int maxY = 0;
         int maxX = 0;
@@ -18,7 +18,7 @@ namespace Labb2_Dungeon_Crawler
 
         public List<LevelElement> MyLevel
         {
-            get => myLevel;
+            get => gameLevel;
         }
 
         public void Load(string filename) {
@@ -51,22 +51,22 @@ namespace Labb2_Dungeon_Crawler
 
                     if (map[i][j].Equals('#'))
                     {
-                        myLevel.Add(new Wall(i, j));
+                        gameLevel.Add(new Wall(i, j));
                     }
 
                     else if (map[i][j].Equals('r'))
                     {
-                        myLevel.Add(new Rat(i, j));
+                        gameLevel.Add(new Rat(i, j));
                     }
 
                     else if (map[i][j].Equals('s'))
                     {
-                        myLevel.Add(new Snake(i, j));
+                        gameLevel.Add(new Snake(i, j));
                     }
 
                     else if (map[i][j].Equals('@'))
                     {
-                        myLevel.Add(new Player(i, j));
+                        gameLevel.Add(new Player(i, j));
                     }
 
                     else { 
@@ -157,14 +157,12 @@ namespace Labb2_Dungeon_Crawler
             Console.WriteLine($"Use the Arrowkeys to move, press Esc to end the game.".PadRight(60));
             while (!endgame)
             {
-
-                DrawLevel(MyLevel, maxY, maxX, maxVision);
-         
+      
                 PlayerTurn();
                 EnemyTurn();
                 RemoveTheDead();
                 turns++;
-                
+                DrawLevel(MyLevel, maxY, maxX, maxVision);
             }
             
         }
