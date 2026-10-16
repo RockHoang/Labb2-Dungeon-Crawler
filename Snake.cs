@@ -89,7 +89,7 @@ namespace Labb2_Dungeon_Crawler
             else { }
         }
 
-        //used to prevent the snake from having the same cordinates as other elements
+        //Används för att förhindra att orm kan ha samma position som andra element.
         private bool NoCollision(int y, int x, List<LevelElement> Level) {
 
             foreach (LevelElement element in Level) {

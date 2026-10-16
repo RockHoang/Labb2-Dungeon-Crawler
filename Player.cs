@@ -25,7 +25,8 @@ namespace Labb2_Dungeon_Crawler
             
         }
 
-        //used to prevent the player from having the same positions as other elements.
+        //Förhindrar att spelaren står på samma postion som andra element och initierar strid med fiender som står på posiitioner
+        //denna vill gå till.
         private bool ValidMove(List<LevelElement> Level, int y, int x) {
             while (true) {
                 foreach (var element in Level)

@@ -32,7 +32,8 @@ namespace Labb2_Dungeon_Crawler
 
         }
 
-        //used to prevent rat from having the same Y and X position as another element.
+        //Används för att förhindra att råta har samma postion som andra element. Samt starta stid med spelaren om denne står
+        //på en postion råtan vill gå till.
         private bool ValidMove(List<LevelElement> Level, int x, int y)
         {
             foreach (var element in Level) {
