@@ -25,12 +25,14 @@ namespace Labb2_Dungeon_Crawler
             
         }
 
+        //used to prevent the player from having the same positions as other elements.
         private bool ValidMove(List<LevelElement> Level, int y, int x) {
             while (true) {
                 foreach (var element in Level)
                 {
                     if (element.myX == x && element.myY == y && element is Wall)
                     {
+                        Console.WriteLine("You hit a wall! Ouch!".PadRight(60));
                         return false;
                     }
 

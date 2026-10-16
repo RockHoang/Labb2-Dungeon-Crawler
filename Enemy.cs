@@ -24,8 +24,9 @@ namespace Labb2_Dungeon_Crawler
             int attack = this.myAttack.Throw();
             int defence = myEnemy.myDefence.Throw();
             int outcome = attack - defence;
+
             Console.WriteLine($"{this.GetType().Name} Started combat with {myEnemy.GetType().Name}".PadRight(60));
-            //Console.WriteLine($"{this.GetType().Name} threw {myAttack} got:{attack} {myEnemy.GetType().Name} threw {myEnemy.myDefence} got:{defence}".PadRight(60));
+            Console.WriteLine($"{this.GetType().Name} threw {myAttack} got:{attack} {myEnemy.GetType().Name} threw {myEnemy.myDefence} got:{defence}".PadRight(60));
             if (outcome > 0) {
                 int enemyHP = myEnemy.myHP;
                 myEnemy.myHP -= outcome;
@@ -33,8 +34,8 @@ namespace Labb2_Dungeon_Crawler
 
             }
             else {
-                Console.WriteLine($"{this.GetType().Name} did no damage to {myEnemy.GetType().Name}!".PadRight(60));
-                Console.WriteLine($"{myEnemy.GetType().Name} counterattacked {this.GetType().Name}!".PadRight(60));
+                Console.WriteLine($"{this.GetType().Name} did no damage to {myEnemy.GetType().Name}! " +
+                    $"{myEnemy.GetType().Name} counterattacked {this.GetType().Name}!".PadRight(60));
                 CounterAttack(myEnemy);
                 
             }
@@ -45,10 +46,11 @@ namespace Labb2_Dungeon_Crawler
             int attack = myEnemy.myAttack.Throw();
             int defence = this.myDefence.Throw();
             int outcome = attack - defence;
+            Console.WriteLine($"{myEnemy.GetType().Name} threw {myEnemy.myAttack} got:{attack} {this.GetType().Name} threw {this.myDefence} got:{defence}".PadRight(60));
             if (outcome > 0)
             {
                 int enemyHP = this.myHP;
-                myEnemy.myHP -= outcome;
+                this.myHP -= outcome;
                 Console.WriteLine($"{myEnemy.GetType().Name} did {outcome} damage to {this.GetType().Name} HP {enemyHP} -> {this.myHP}".PadRight(60));
 
             }

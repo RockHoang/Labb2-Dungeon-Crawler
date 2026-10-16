@@ -94,8 +94,7 @@ namespace Labb2_Dungeon_Crawler
                 Console.WriteLine();
             }
             Console.WriteLine($"Turn: {turns}".PadRight(60));
-
-
+            
         }
 
         bool SeenWall(int y, int x) {
@@ -154,15 +153,16 @@ namespace Labb2_Dungeon_Crawler
             return false;
         }
 
-        public void UpdateGane() {
+        public void UpdateGame() {
             Console.WriteLine($"Use the Arrowkeys to move, press Esc to end the game.".PadRight(60));
             while (!endgame)
             {
-                RemoveTheDead();
+
                 DrawLevel(MyLevel, maxY, maxX, maxVision);
+         
                 PlayerTurn();
                 EnemyTurn();
-
+                RemoveTheDead();
                 turns++;
                 
             }
@@ -170,6 +170,7 @@ namespace Labb2_Dungeon_Crawler
         }
 
         private void PlayerTurn() {
+
             foreach (var element in MyLevel) {
                 if (element is Player p) {
                     p.Update(MyLevel);
@@ -199,18 +200,21 @@ namespace Labb2_Dungeon_Crawler
                 if (element is Rat r && r.IsDead())
                 {
                     MyLevel.Remove(r);
+                    DrawLevel(MyLevel, maxY, maxX, maxVision);
                     break;
                 }
                 else if (element is Snake s && s.IsDead())
                 {
                     MyLevel.Remove(s);
+                    DrawLevel(MyLevel, maxY, maxX, maxVision);
                     break;
                 }
                 else if (element is Player p && p.IsDead()) 
                 {
                     MyLevel.Remove(p);
                     endgame = true;
-                    Console.WriteLine("Press any key to end the game.");
+                    Console.WriteLine("Press any key to end the game.".PadRight(60));
+                    DrawLevel(MyLevel, maxY, maxX, maxVision);
                     Console.ReadKey();
                     break;
                 }

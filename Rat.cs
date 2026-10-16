@@ -32,6 +32,7 @@ namespace Labb2_Dungeon_Crawler
 
         }
 
+        //used to prevent rat from having the same Y and X position as another element.
         private bool ValidMove(List<LevelElement> Level, int x, int y)
         {
             foreach (var element in Level) {

@@ -39,10 +39,7 @@ namespace Labb2_Dungeon_Crawler
         public void MoveFromPlayer(Enemy p, int y, int x, List<LevelElement> Level) {
             int tempY = y;
             int tempX = x;
-            //Console.WriteLine($"Distance move up: {DistanceFromPlayer(pY, pX, tempY-1, x)}");
-            //Console.WriteLine($"Distance move down: {DistanceFromPlayer(pY, pX, tempY+1, x)}");
-            //Console.WriteLine($"Distance move left: {DistanceFromPlayer(pY, pX, y, tempX-1)}");
-            //Console.WriteLine($"Distance move right: {DistanceFromPlayer(pY, pX, y, tempX+1)}");
+
             if (DistanceFromPlayer(p.myY, p.myX, tempY - 1, x) > 2 && NoCollision(tempY - 1, tempX, Level))
             {
                 this.myY = tempY - 1;
@@ -92,6 +89,7 @@ namespace Labb2_Dungeon_Crawler
             else { }
         }
 
+        //used to prevent the snake from having the same cordinates as other elements
         private bool NoCollision(int y, int x, List<LevelElement> Level) {
 
             foreach (LevelElement element in Level) {
