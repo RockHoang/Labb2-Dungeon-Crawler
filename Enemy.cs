@@ -26,7 +26,7 @@ namespace Labb2_Dungeon_Crawler
             int outcome = attack - defence;
             
             summary += $"{this.GetType().Name} Started combat with {myEnemy.GetType().Name}\n" + 
-                $"{this.GetType().Name} threw {myAttack} got:{attack} {myEnemy.GetType().Name} threw {myEnemy.myDefence} got:{defence}   \n";
+                $"{this.GetType().Name} threw {myAttack} got:{attack} {myEnemy.GetType().Name} threw {myEnemy.myDefence} got:{defence}      \n";
             if (outcome > 0) {
                 int enemyHP = myEnemy.myHP;
                 myEnemy.myHP -= outcome;

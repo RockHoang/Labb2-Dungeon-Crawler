@@ -7,7 +7,7 @@ namespace Labb2_Dungeon_Crawler
 {
     public class LevelData
     {
-        private List<LevelElement> gameLevel = new List<LevelElement>();
+        private readonly List<LevelElement> gameLevel = new List<LevelElement>();
         private List<Wall> wallHistory = new List<Wall>();
         int maxY = 0;
         int maxX = 0;
@@ -16,7 +16,7 @@ namespace Labb2_Dungeon_Crawler
         int turns = 0;
         bool endgame=false;
 
-        public List<LevelElement> MyLevel
+        public List<LevelElement> Elements
         {
             get => gameLevel;
         }
@@ -54,22 +54,22 @@ namespace Labb2_Dungeon_Crawler
 
                     if (map[i][j].Equals('#'))
                     {
-                        gameLevel.Add(new Wall(i, j));
+                        Elements.Add(new Wall(i, j));
                     }
 
                     else if (map[i][j].Equals('r'))
                     {
-                        gameLevel.Add(new Rat(i, j));
+                        Elements.Add(new Rat(i, j));
                     }
 
                     else if (map[i][j].Equals('s'))
                     {
-                        gameLevel.Add(new Snake(i, j));
+                        Elements.Add(new Snake(i, j));
                     }
 
                     else if (map[i][j].Equals('@'))
                     {
-                        gameLevel.Add(new Player(i, j));
+                        Elements.Add(new Player(i, j));
                     }
 
                     else { 
@@ -78,7 +78,7 @@ namespace Labb2_Dungeon_Crawler
                 }
             }
 
-            DrawLevel(MyLevel, maxY, maxX, maxVision);
+            DrawLevel(Elements, maxY, maxX, maxVision);
         }
 
         void DrawLevel(List<LevelElement> Level, int maxY, int maxX, int maxVision) {
@@ -164,16 +164,16 @@ namespace Labb2_Dungeon_Crawler
                 EnemyTurn();
                 RemoveTheDead();
                 turns++;
-                DrawLevel(MyLevel, maxY, maxX, maxVision);
+                DrawLevel(Elements, maxY, maxX, maxVision);
             }
             
         }
 
         private void PlayerTurn() {
 
-            foreach (var element in MyLevel) {
+            foreach (var element in Elements) {
                 if (element is Player p) {
-                    p.Update(MyLevel);
+                    p.Update(Elements);
                 }
             }
 
@@ -181,14 +181,14 @@ namespace Labb2_Dungeon_Crawler
 
         private void EnemyTurn()
         {
-            foreach (var element in MyLevel)
+            foreach (var element in Elements)
             {
                 if (element is Rat r)
                 {
-                    r.Update(MyLevel);
+                    r.Update(Elements);
                 }
                 else if (element is Snake s) { 
-                    s.Update(MyLevel);
+                    s.Update(Elements);
                 }
             }
 
@@ -196,25 +196,25 @@ namespace Labb2_Dungeon_Crawler
 
         private void RemoveTheDead() {
             
-            foreach (var element in MyLevel) {
+            foreach (var element in Elements) {
                 if (element is Rat r && r.IsDead())
                 {
-                    MyLevel.Remove(r);
-                    DrawLevel(MyLevel, maxY, maxX, maxVision);
+                    Elements.Remove(r);
+                    DrawLevel(Elements, maxY, maxX, maxVision);
                     break;
                 }
                 else if (element is Snake s && s.IsDead())
                 {
-                    MyLevel.Remove(s);
-                    DrawLevel(MyLevel, maxY, maxX, maxVision);
+                    Elements.Remove(s);
+                    DrawLevel(Elements, maxY, maxX, maxVision);
                     break;
                 }
                 else if (element is Player p && p.IsDead()) 
                 {
-                    MyLevel.Remove(p);
+                    Elements.Remove(p);
                     endgame = true;
                     Console.WriteLine("Press any key to end the game.".PadRight(60));
-                    DrawLevel(MyLevel, maxY, maxX, maxVision);
+                    DrawLevel(Elements, maxY, maxX, maxVision);
                     Console.ReadKey();
                     break;
                 }
