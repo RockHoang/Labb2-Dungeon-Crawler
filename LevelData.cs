@@ -31,7 +31,10 @@ namespace Labb2_Dungeon_Crawler
             string myline = levelReader.ReadLine();
             while (myline != null)
             {
-                map.Add(myline);
+                if (!myline.IsWhiteSpace()) {
+                    map.Add(myline);
+                }
+                
                 myline = levelReader.ReadLine();
             }
             levelReader.Close();
@@ -83,8 +86,6 @@ namespace Labb2_Dungeon_Crawler
             Console.CursorVisible = false;
             Console.SetCursorPosition(0, 0);
 
-            
-
             for (int i = 0; i < maxY; i++) {
                 for (int j = 0; j < maxX; j++) {
                     if (!DrawElement(Level, i, j, maxVision)) {
@@ -93,7 +94,7 @@ namespace Labb2_Dungeon_Crawler
                 }
                 Console.WriteLine();
             }
-            Console.WriteLine($"Turn: {turns}".PadRight(60));
+            Console.WriteLine($"Turn: {turns} Use the Arrowkeys to move, press Esc to end the game.".PadRight(60));
             
         }
 
@@ -154,11 +155,12 @@ namespace Labb2_Dungeon_Crawler
         }
 
         public void UpdateGame() {
-            Console.WriteLine($"Use the Arrowkeys to move, press Esc to end the game.".PadRight(60));
+
             while (!endgame)
             {
       
                 PlayerTurn();
+                RemoveTheDead();
                 EnemyTurn();
                 RemoveTheDead();
                 turns++;
